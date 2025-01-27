@@ -1,27 +1,32 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
 import DropDownListe from '../components/sharedcomponents/DropDownListe';
 
 const ChoseCompanyScreen = ({navigation}) => {
   const [selectedCompany, setSelectedCompany] = useState(null);
+  console.log(selectedCompany, '1');
 
   const handleValidation = () => {
+    console.log(selectedCompany, '2');
     if (selectedCompany) {
-      alert(`Company "${selectedCompany}" selected!`);
-      // Navigation ou logique supplémentaire ici
+      // alert(`Company "${selectedCompany}" selected!`);
+      navigation.navigate('ApportsScreen');
     } else {
-      alert('Please select a company before proceedinggggg.');
+      alert('Please select a company before proceeding.');
     }
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.label}>Choose your company</Text>
-      <DropDownListe onChangeValue={value => setSelectedCompany(value)} />
+      <DropDownListe
+        setSelectedCompany={setSelectedCompany}
+        placeholder="Select or add Company"
+      />
       <TouchableOpacity style={styles.button} onPress={handleValidation}>
         <Text style={styles.buttonText}>Valider</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 

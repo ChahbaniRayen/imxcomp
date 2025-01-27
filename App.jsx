@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginScreen} from './Screens/LoginScreen';
 import {OTPVerifyScreen} from './Screens/OTPVerifyScreen';
 import ChoseCompanyScreen from './Screens/ChoseCompanyScreen';
+import ApportsScreen from './Screens/ApportsScreen';
 // import ApportsScreen from './Screens/ApportsScreen';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           name="ChoseCompanyScreen"
           component={ChoseCompanyScreen}
         />
+        <Stack.Screen name="ApportsScreen" component={ApportsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const DropDownListe = () => {
+const DropDownListe = ({setSelectedCompany, placeholder}) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -26,6 +26,7 @@ const DropDownListe = () => {
       };
       setItems(prevItems => [...prevItems, newCompany]);
       setValue(newCompany.value);
+      setSelectedCompany(newCompany.value);
       Alert.alert('Ajouté', `${trimmedText} a été ajouté à la liste.`);
     }
   };
@@ -33,15 +34,15 @@ const DropDownListe = () => {
   const handleSearchTextChange = text => {
     setSearchText(text);
 
+    // Vérifier si un espace a été ajouté à la fin
     if (text.endsWith(' ')) {
-      handleAddCompany(text);
-      setSearchText('');
+      handleAddCompany(text); // Ajouter l'entreprise
+      setSearchText(''); // Réinitialiser le champ de recherche
     }
   };
 
   return (
     <View style={styles.wrapper}>
-      {/* Encapsule le style */}
       <DropDownPicker
         open={open}
         value={value}
@@ -50,14 +51,14 @@ const DropDownListe = () => {
         setValue={setValue}
         setItems={setItems}
         searchable={true}
-        placeholder="Select or add a company"
-        searchPlaceholder="Type to search..."
+        placeholder={placeholder}
+        searchPlaceholder="Rechercher ou ajouter..."
         onChangeValue={val => {
-          console.log('Selected:', val);
+          setSelectedCompany(val);
         }}
         onChangeSearchText={handleSearchTextChange}
-        style={styles.dropDown} // Style personnalisé pour le Dropdown
-        dropDownContainerStyle={styles.dropDownContainer} // Style pour la liste déroulante
+        style={styles.dropDown}
+        dropDownContainerStyle={styles.dropDownContainer}
       />
     </View>
   );
