@@ -10,7 +10,7 @@ const ChoseCompanyScreen = ({navigation}) => {
       alert(`Company "${selectedCompany}" selected!`);
       // Navigation ou logique supplémentaire ici
     } else {
-      alert('Please select a company before proceeding.');
+      alert('Please select a company before proceedinggggg.');
     }
   };
 
